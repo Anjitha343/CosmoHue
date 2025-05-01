@@ -1,0 +1,75 @@
+
+
+{% extends "layout.html" %}
+
+{% block content %}
+<section id="cart" class="section-p1">
+    <table width="100%">
+        <thead>
+            <tr>
+                <td>Remove</td>
+                <td>Image</td>
+                <td>Product</td>
+                <td>Price</td>
+                <td>Quantity</td>
+                <td>Subtotal</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in cart_items %}
+    <tr>
+        <td>
+            <form action="{{ url_for('remove_from_cart', productid=item.productid) }}" method="POST">
+                <button type="submit"  style="
+                padding: 4px;
+                border-radius: 27px;
+                border: none;">x</button>
+            </form>
+        </td>
+        <td><img src="{{ url_for('static', filename='images/' + item.image) }}" width="50"></td>
+        <td>{{ item.productname }}</td>
+        <td>₹{{ item.price }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>₹{{ item.price * item.quantity }}</td>
+    </tr>
+    {% endfor %}
+        </tbody>
+    </table>
+
+</section>
+<section id="cart-add" class="section-p1">
+    <div id="coupon">
+        <h3>Apply Coupon</h3>
+        <input type="text" placeholder="Enter your Coupon">
+        <button class="Normal">Apply</button>
+    </div>
+    <div id="totalcart">
+        
+        <table>
+            <thead><h2>Cart Total</h2></thead>
+            <tbody>
+                <tr>
+                    <td>Cart Subtotal</td>
+                    <td>₹{{cart_total}}</td>
+                </tr>
+            <tr>
+                <td>Shipping</td>
+                <td>Free</td>
+            </tr>
+            <tr><td>Total</td><td>₹{{cart_total}}</td></tr>
+            </tbody>
+            
+
+        </table>
+        
+        <button class="checkout" onclick="location.href='/ppy.html'">Proceed to checkout</button>
+       
+    </div>
+
+</section>
+       
+
+
+        {% endblock %}
+
+        

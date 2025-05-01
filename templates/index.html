@@ -1,0 +1,422 @@
+{% extends "layout.html" %}
+
+{% block content %}
+ 
+
+        <!--==main==========================-->
+        <section id="main">
+            
+            <!--**text*****************-->
+            <div class="main-text">
+                <span>New Collection</span>
+                <h1> <font>Beauty Redefined.</font> Glow with confidence</h1>
+                <p>Make your skin glow today with CosmoHue's beauty products. We have curated a collection of amazing products from various brands. Browse through our website and select your favorite beauty product from your preferred brand.</p>
+                <a href="productcatalog.html">Shop Now</a>
+            </div>
+            <!--**img******************-->
+            <div class="main-img">
+                <img alt="Main Img" src="{{ url_for('static',filename='images/main.png')}}">
+            </div>
+    
+        </section>
+    
+    
+        <!--==product-grid-3=======================-->
+        <section class="product-grid-3">
+    
+            <!--**box*************-->
+            <div class="product-grid-box product-grid-box1">
+                <!--img-->
+                <img src="{{ url_for('static',filename='images/s1.jpg')}}" />
+                <!--text-->
+                <div class="product-grid-text">
+                    <strong>The Ordinary The Clear set</strong>
+                    <span>Skin Care Product</span>
+                    <a href="productcatalog.html">Shop Now</a>
+                </div>
+            </div>
+    
+            <!--**box*************-->
+            <div class="product-grid-box product-grid-box2">
+                <!--img-->
+                <img src="{{ url_for('static',filename='images/s2.jpg')}}" />
+                <!--text-->
+                <div class="product-grid-text">
+                    <strong>Glamveda Korean Glass Skin Rice & Ceramide </strong>
+                    <span>Skin Care Product</span>
+                    <a href="productcatalog.html">Shop Now</a>
+                </div>
+            </div>
+    
+            <!--**box*************-->
+            <div class="product-grid-box product-grid-box3">
+                <!--img-->
+                <img src="{{ url_for('static',filename='images/s3.jpg')}}" />
+                <!--text-->
+                <div class="product-grid-text">
+                    <strong>Minimalist Brightening & SPF Skincare</strong>
+                    <span>Skin Care Product</span>
+                    <a href="productcatalog.html">Shop Now</a>
+                </div>
+            </div>
+    
+        </section>
+    
+    
+        <!--==New-Products-->
+        <section id="new_products">
+    
+            <!--**heading*********************-->
+            <div class="new-p-heading">
+                <!--heading-->
+                <h3>New Products</h3>
+                <!--filter-->
+                <ul>
+                    <li class="filter-list active" data-filter="all" >All</li>
+                    <li class="filter-list" data-filter="skin">Skin</li>
+                    <li class="filter-list" data-filter="makeup">Makeup</li>
+                    <li  class="filter-list" data-filter="Nail">Nails</li>
+                    <li class="filter-list" data-filter="hair">Hair</li>
+                    <li class="filter-list" data-filter=""><a href="productcatalog.html">More</a></li>
+                </ul>
+            </div>
+    
+            <!--**container******************-->
+            <div class="new-product-container">
+    
+                <!--**box**-->
+                <div class="new-product-box-wrapper" data-filter="makeup">
+                <div class="new-product-box" data-filter="makeup">
+                    <!--img-->
+                    <a href="smashbox.html" class="new-product-img">
+                        <span>Makeup</span>
+                        <img src="{{ url_for('static',filename='images/n1.png')}}" />
+                    </a>
+                    <!--text-->
+                    <div class="new-product-text" id = "primer">
+                        <a href="#" class="new-product-title">Smashbox The Original Photo Finish Smooth & Blur Primer </a>
+                        <span>₹1650</span>
+                        <a href="#" class="new-p-cart-btn">Add To Cart</a>
+                    </div>
+                </div>
+                </div><!--end-box-->
+    
+                <!--**box**-->
+                <div class="new-product-box-wrapper" data-filter="makeup" >
+                <div class="new-product-box" data-filter="makeup">
+                    <!--img-->
+                    <a href="mac.html" class="new-product-img">
+                        <img src="{{ url_for('static',filename='images/n2.png')}}" />
+                        <span>Makeup</span>
+                    </a>
+                    <!--text-->
+                    <div class="new-product-text" id="spray">
+                        <a href="#" class="new-product-title">M.A.C Prep + Prime Fix+ Setting Spray </a>
+                        <span>₹850</span>
+                        <a href="#" class="new-p-cart-btn">Add To Cart</a>
+                    </div>
+                </div>
+                </div><!--end-box-->
+    
+                <!--**box**-->
+                <div class="new-product-box-wrapper" data-filter="Nail" >
+                <div class="new-product-box" data-filter="Nail">
+                    <!--img-->
+                    <a href="#" class="new-product-img">
+                        <span>Nail</span>
+                        <img src="{{ url_for('static',filename='images/n3.png')}}" />
+                    </a>
+                    <!--text-->
+                    <div class="new-product-text" id="red-nailpaint">
+                        <a href="#" class="new-product-title">O.P.I Nail Lacquer Limited Edition </a>
+                        <span>₹680
+                        </span>
+                        <a href="#" class="new-p-cart-btn">Add To Cart</a>
+                    </div>
+                </div>
+                </div><!--end-box-->
+    
+                <!--**box**-->
+                <div class="new-product-box-wrapper" data-filter="Nail" >
+                <div class="new-product-box" data-filter="Nail">
+                    <!--img-->
+                    <a href="#" class="new-product-img">
+                        <span>Nail</span>
+                        <img src="{{ url_for('static',filename='images/n4.png')}}" />
+                    </a>
+                    <!--text-->
+                    <div class="new-product-text" id="nailpaint" >
+                        <a href="#" class="new-product-title">O.P.I Nail Lacquer Limited Edition </a>
+                        <span>₹680</span>
+                        <a href="#" class="new-p-cart-btn">Add To Cart</a>
+                    </div>
+                </div>
+                </div><!--end-box-->
+    
+                <!--**box**-->
+                <div class="new-product-box-wrapper" data-filter="makeup" >
+                <div class="new-product-box" data-filter="makeup" >
+                    <!--img-->
+                    <a href="product page.html" class="new-product-img">
+                        <span>Makeup</span>
+                        <img src="{{ url_for('static',filename='images/n5.png')}}" />
+                    </a>
+                    <!--text-->
+                    <div class="new-product-text" id="eye-shadow-palette">
+                        <a href="product page.html" class="new-product-title">Huda Beauty Eye Shadow Palette - Brown</a>
+                        <span>₹2650</span>
+                        <a href="#" class="new-p-cart-btn">Add To Cart</a>
+                    </div>
+                </div>
+                </div><!--end-box-->
+    
+                <!--**box**-->
+                <div class="new-product-box-wrapper" data-filter="Nail" >
+                 <div class="new-product-box" data-filter="Nail">
+                    <!--img-->
+                    <a href="#" class="new-product-img">
+                        <span>Nail</span>
+                        <img src="{{ url_for('static',filename='images/n6.png')}}" />
+                    </a>
+                    <!--text-->
+                    <div class="new-product-text" id="nail coat">
+                        <a href="#" class="new-product-title">O.P.I Top Coat</a>
+                        <span>₹723                        </span>
+                        <a href="#" class="new-p-cart-btn">Add To Cart</a>
+                    </div>
+                </div>
+                </div><!--end-box-->
+    
+                <!--**box**-->
+                <div class="new-product-box-wrapper" data-filter="makeup" >
+                <div class="new-product-box" data-filter="makeup">
+                    <!--img-->
+                    <a href="#" class="new-product-img">
+                        <span>Makeup</span>
+                        <img src="{{ url_for('static',filename='images/n7.png')}}" />
+                    </a>
+                    <!--text-->
+                    <div class="new-product-text" id="compact">
+                        <a href="#" class="new-product-title">Bobbi Brown Bronzing Powder</a>
+                        <span>₹4600</span>
+                        <a href="#" class="new-p-cart-btn">Add To Cart</a>
+                    </div>
+                </div>
+                </div><!--end-box-->
+    
+    
+                <!--**box**-->
+                <div class="new-product-box-wrapper"  data-filter="skin">
+                <div class="new-product-box" data-filter="skin" >
+                    <!--img-->
+                    <a href="#" class="new-product-img">
+                        <span>Skin</span>
+                        <img src="{{ url_for('static',filename='images/n8.png')}}" />
+                    </a>
+                    <!--text-->
+                    <div class="new-product-text" id="cream">
+                        <a href="#" class="new-product-title">Dermalogica Skin Smoothing Cream </a>
+                        <span>₹1300</span>
+                        <a href="#" class="new-p-cart-btn">Add To Cart</a>
+                    </div>
+                </div>
+                </div><!--end-box-->
+    
+                <!--**box**-->
+                <div class="new-product-box-wrapper" data-filter="skin" >
+                <div class="new-product-box" data-filter="skin">
+                    <!--img-->
+                    <a href="#" class="new-product-img">
+                        <span>Skin</span>
+                        <img src="{{ url_for('static',filename='images/n9.png')}}" />
+                    </a>
+                    <!--text-->
+                    <div class="new-product-text" id="sunscreen">
+                        <a href="#" class="new-product-title">Lotus Organic Mineral Sunscreen</a>
+                        <span>₹336</span>
+                        <a href="#" class="new-p-cart-btn">Add To Cart</a>
+                    </div>
+                </div>
+                </div><!--end-box-->
+    
+    
+                <!--**box**-->
+                <div class="new-product-box-wrapper" data-filter="makeup" >
+                <div class="new-product-box" data-filter="makeup" >
+                    <!--img-->
+                    <a href="#" class="new-product-img">
+                        <span>Makeup</span>
+                        <img src="{{ url_for('static',filename='images/n10.png')}}" />
+                    </a>
+                    <!--text-->
+                    <div class="new-product-text" id="mist">
+                        <a href="#" class="new-product-title">PIXI MAkeup Fixing Mist</a>
+                        <span>₹1650</span>
+                        <a href="#" class="new-p-cart-btn">Add To Cart</a>
+                    </div>
+                </div>
+                </div><!--end-box-->
+            
+            </div><!--end-container-->
+    
+        </section>
+    
+    
+    
+        <!--==product-grid-1.5=======================-->
+        <section class="product-grid-half">
+    
+            <!--**box*************-->
+            <div class="product-grid-box product-grid-box2">
+                <!--img-->
+                <img src="{{ url_for('static',filename='images/h1.jpg')}}" />
+                <!--text-->
+                <div class="product-grid-text">
+                    <strong>All Type of Makeup and Skincare</strong>
+                    
+                    <a href="productcatalog.html">Shop Now</a>
+                </div>
+            </div>
+    
+            <!--**box*************-->
+            <div class="product-grid-box product-grid-box1">
+                <!--img-->
+                <img src="{{ url_for('static',filename='images/s11.png')}}" />
+                <!--text-->
+                <div class="product-grid-text">
+                    <strong>Bestsellers</strong>
+                   
+                    <a href="productcatalog.html">Shop Now</a>
+                </div>
+            </div>
+    
+            <!--**box*************-->
+            <div class="product-grid-box product-grid-box3">
+                <!--img-->
+                <img src="{{ url_for('static',filename='images/s12.jpg')}}" />
+                <!--text-->
+                <div class="product-grid-text">
+                    <strong>Trendy</strong>
+                    
+                    <a href="productcatalog.html">Shop Now</a>
+                </div>
+            </div>
+    
+        </section>
+    
+    
+    
+        <!--==popular-products=============================-->
+        <section id="popular-product">
+            
+            <!--**heading*******************-->
+            <div class="popular-heading">
+                <h3>Popular Brands </h3>
+                
+            </div>
+    
+            <!--**container****************-->
+            <div class="popular-container">
+    
+                <!--**box**********-->
+                <div class="popular-box">
+                    <!--img-->
+                    <a href="#" class="popular-box-img">
+                        <img alt="" src="{{ url_for('static',filename='images/may.png')}}">
+                    </a>
+                    
+                </div>
+    
+                <!--**box**********-->
+                <div class="popular-box">
+                    <!--img-->
+                    <a href="#" class="popular-box-img">
+                        <img alt="" src="{{ url_for('static',filename='images/mac.png')}}">
+                    </a>
+                    
+                </div>
+    
+                <!--**box**********-->
+                <div class="popular-box">
+                    <!--img-->
+                    <a href="#" class="popular-box-img">
+                        <img alt="" src="{{ url_for('static',filename='images/bio.png')}}">
+                    </a>
+                    
+                </div>
+    
+                <!--**box**********-->
+                <div class="popular-box">
+                    <!--img-->
+                    <a href="#" class="popular-box-img">
+                        <img alt="" src="{{ url_for('static',filename='images/vlcc.png')}}">
+                    </a>
+                    
+                </div>
+    
+                <!--**box**********-->
+                <div class="popular-box">
+                    <!--img-->
+                    <a href="#" class="popular-box-img">
+                        <img alt="" src="{{ url_for('static',filename='images/lakme.png')}}">
+                    </a>
+                    
+                </div>
+    
+                <!--**box**********-->
+                <div class="popular-box">
+                    <!--img-->
+                    <a href="#" class="popular-box-img">
+                        <img alt="" src="{{ url_for('static',filename='images/loreal.png')}}">
+                    </a>
+                    
+                </div>
+    
+                <!--**box**********-->
+                <div class="popular-box">
+                    <!--img-->
+                    <a href="#" class="popular-box-img">
+                        <img alt="" src="{{ url_for('static',filename='images/sugar.png')}}">
+                    </a>
+                   
+                </div>
+    
+                <!--**box**********-->
+                <div class="popular-box">
+                    <!--img-->
+                    <a href="#" class="popular-box-img">
+                        <img alt="" src="{{ url_for('static',filename='images/lotus.png')}}">
+                    </a>
+                    
+                </div>
+    
+                <!--**box**********-->
+                <div class="popular-box">
+                    <!--img-->
+                    <a href="#" class="popular-box-img">
+                        <img alt="" src="{{ url_for('static',filename='images/derma.png')}}">
+                    </a>
+                    
+                </div>
+    
+                
+    
+            </div>
+    
+        </section><!--popular-end-->
+        
+        
+
+     
+        </div>
+
+    </div>
+    
+        
+    
+    {% endblock %}
+           
+    
+      
+    
+       

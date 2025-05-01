@@ -1,0 +1,184 @@
+{% extends "layout.html" %}
+    
+
+
+    {% block content %}
+
+<body>
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+    <section id="pay" style="display: flex; justify-content: space-around; align-items: flex-start; gap: 20px;margin-top: 20px;margin-bottom: 200px;">
+        
+        <!-- Order Summary Table -->
+        <div class="order" style="width:65% ;background-color: white; padding: 20px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); border-radius: 8px;">
+            <h2>Order Summary</h2>
+            <table  width="100%">
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Image</th>
+                        <th >Quantity</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in cart_items %}
+                    <tr>
+                        <td>{{ item.productname }}</td>
+                        <td><img src="{{ url_for('static', filename='images/' + item.image) }}" width="50"></td>
+                        <td>{{ item.quantity }}</td>
+                        <td>₹{{ item.price * item.quantity }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="2"><strong>Total</strong></td>
+                        <td><strong>₹{{ cart_total }}</strong></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    <div class="payment-form" >
+        <h2>Payment</h2>
+        
+        <div class="payment-methods">
+            <button type="button" onclick="showPaymentDetails('card')">Credit/Debit Card</button>
+            <button type="button" onclick="showPaymentDetails('upi')">UPI</button>
+            <button type="button" onclick="showPaymentDetails('netbanking')">Net Banking</button>
+            <button type="button" onclick="showPaymentDetails('cod')">Cash on Delivery</button>
+        </div>
+
+        <form action="/submit-payment" method="POST" id="payment-form" style="display:none;">
+            <!-- Card Payment Section -->
+            <div id="card-details" class="payment-details" style="display:none;">
+                <div class="form-group">
+                    <label for="card-number">Card Number</label>
+                    <input type="text" id="card-number" name="card_number" placeholder="1234 5678 9876 5432">
+                </div>
+                <div class="form-group">
+                    <label for="expiry-date">Expiry Date</label>
+                    <input type="text" id="expiry-date" name="expiry_date" placeholder="MM/YY">
+                </div>
+                <div class="form-group">
+                    <label for="cvv">CVV</label>
+                    <input type="text" id="cvv" name="cvv" placeholder="123">
+                </div>
+            </div>
+
+            <!-- UPI Payment Section -->
+            <div id="upi-details" class="payment-details" style="display:none;">
+                <div class="form-group">
+                    <label for="upi-id">UPI ID</label>
+                    <input type="text" id="upi-id" name="upi_id" placeholder="example@upi">
+                </div>
+                <div class="form-group">
+                    <button type="button" id="generate-qrcode" onclick="generateQRCode()" >Generate QR Code</button>
+                </div>
+            </div>
+
+           <!-- Net Banking Section -->
+<div id="netbanking-details" class="payment-details" style="display:none;">
+    <div class="form-group">
+        <label for="netbanking-bank">Select Bank</label>
+        <select id="netbanking-bank" name="netbanking_bank">
+            <option value="">Choose Bank</option>
+            <option value="hdfc">HDFC Bank</option>
+            <option value="icici">ICICI Bank</option>
+            <option value="sbi">State Bank of India (SBI)</option>
+            <option value="axis">Axis Bank</option>
+            <option value="kotak">Kotak Mahindra Bank</option>
+            <option value="pnb">Punjab National Bank</option>
+            <option value="bob">Bank of Baroda</option>
+            <option value="idbi">IDBI Bank</option>
+            <option value="canara">Canara Bank</option>
+            <option value="indusind">IndusInd Bank</option>
+            <option value="federal">Federal Bank</option>
+            <option value="yesbank">Yes Bank</option>
+            <option value="uco">UCO Bank</option>
+            <option value="union">Union Bank of India</option>
+            <option value="idfc">IDFC First Bank</option>
+            <option value="central">Central Bank of India</option>
+            <option value="citibank">Citibank</option>
+            <option value="dbs">DBS Bank</option>
+            <option value="hsbc">HSBC Bank</option>
+        </select>
+    </div>
+</div>
+
+
+            <!-- Cash on Delivery Section -->
+            <div id="cod-details" class="payment-details" style="display:none;">
+                <div class="form-group">
+                    <label for="cod-phone">Phone Number</label>
+                    <input type="text" id="cod-phone" name="cod_phone" placeholder="Your phone number">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="amount">Amount</label>
+                <input type="text" id="amount" name="amount" required placeholder="Amount to pay">
+            </div>
+            
+            <div class="form-group"> 
+                <button type="submit" style="width: 100%;
+                padding: 10px;
+                margin: 5px 0;
+                background-color: #4CAF50;
+                color: white;
+                border: none;
+                cursor: pointer;" >Pay Now</button>
+            </div>
+        </form>
+
+        <div id="qrcode"></div> <!-- QR code will be displayed here -->
+    </div>
+    </section>
+
+    <script>
+        // Show or hide payment details based on selected payment mode
+        function showPaymentDetails(paymentMode) {
+            // Hide all payment details sections
+            var sections = document.querySelectorAll('.payment-details');
+            sections.forEach(function (section) {
+                section.style.display = 'none';
+            });
+
+            // Display the corresponding section
+            if (paymentMode === 'card') {
+                document.getElementById('card-details').style.display = 'block';
+            } else if (paymentMode === 'upi') {
+                document.getElementById('upi-details').style.display = 'block';
+            } else if (paymentMode === 'netbanking') {
+                document.getElementById('netbanking-details').style.display = 'block';
+            } else if (paymentMode === 'cod') {
+                document.getElementById('cod-details').style.display = 'block';
+            }
+
+            // Show the payment form
+            document.getElementById('payment-form').style.display = 'block';
+        }
+
+        // Function to generate QR code for UPI
+        function generateQRCode() {
+            var upiId = document.getElementById('upi-id').value;
+            if (upiId) {
+                var upiLink = "upi://pay?pa=" + upiId + "&pn=YourMerchantName&mc=YourMerchantCode&tid=TransactionID&tn=TransactionNote&am=" + document.getElementById('amount').value + "&cu=INR";
+                document.getElementById('qrcode').innerHTML = ""; // Clear previous QR code
+                var qrCode = new QRCode(document.getElementById("qrcode"), {
+                    text: upiLink,
+                    width: 128,
+                    height: 128,
+                });
+            } else {
+                alert("Please enter a valid UPI ID.");
+            }
+        }
+
+        function showPaymentSuccess() {
+    alert("Payment Successful!");
+    return true; // This allows the form to be submitted after the alert.
+}
+    </script>
+
+</body>
+{% endblock %}

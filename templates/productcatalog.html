@@ -1,0 +1,126 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+    <body>
+        <!--Product filter-->
+        <div id="list-wrapper" class="box-product">
+            <div id="filters">                            
+                    <div id="filter-sort">                        
+                               <div class="sorting">
+                                    <span class="sort-name"><h3>Sort By:</h3></span>
+                                </div>
+                                                
+                     
+                            <div class="sidebar-inner">
+                             <div class="filter-action" onclick="toggleDropdown('brandDropdown', 'brandArrow')">
+                                    <span class="title ">Brand</span>
+                                   <img alt="Arrow" class="arrow" id="brandArrow" src="{{ url_for('static',filename='images/icons8-arrow-50.png')}}" width="23" height="20" >
+                                   <div class="dropdown-content" id="brandDropdown">
+                                    <div onclick="filterProducts('MAC')">MAC</div>
+                                    <div onclick="filterProducts('OPI')">O.P.I</div>
+                                    <div onclick="filterProducts('Huda')">Huda</div>
+                                    <div onclick="filterProducts('all')">ALL</div>
+                                </div>
+                                </div>
+
+                              <div class="filter-action" onclick="toggleDropdown('priceDropdown', 'priceArrow')">
+                              <span class="title ">Price</span>
+                              <img alt="Arrow" class="arrow" id="priceArrow" src="{{ url_for('static',filename='images/icons8-arrow-50.png')}}" width="23" height="20">
+                              <div class="dropdown-content" id="priceDropdown">
+                                <div>₹100 - ₹200</div>
+                                <div>₹200 - ₹500</div>
+                                <div>₹500 - ₹1000</div>
+                            </div>
+                             </div>
+                             <div class="filter-action" onclick="toggleDropdown('concernDropdown', 'concernArrow')">
+                                <span class="title ">Concern</span>
+                                <img alt="Arrow" class="arrow" id="concernArrow" src="{{ url_for('static',filename='images/icons8-arrow-50.png')}}" width="23" height="20">
+                                <div class="dropdown-content" id="concernDropdown">
+                                    <div>Dry Skin</div>
+                                    <div>Oily Skin</div>
+                                    <div>Acne</div>
+                                </div>
+                                </div>
+                                <div class="filter-action" onclick="toggleDropdown('hairDropdown', 'hairArrow')">
+                                <span class="title ">Hair Type</span>
+                                <img alt="Arrow" class="arrow" id="hairArrow" src="{{ url_for('static',filename='images/icons8-arrow-50.png')}}" width="23" height="20">
+                                <div class="dropdown-content" id="hairDropdown">
+                                    <div>Straight</div>
+                                    <div>Curly</div>
+                                    <div>Wavy</div>
+                                </div>
+                                </div>  
+                                <div class="filter-action" onclick="toggleDropdown('skinDropdown', 'skinArrow')">                
+                                 <span class="title ">Skin type</span>
+                                 <img alt="Arrow" class="arrow" id="skinArrow" src="{{ url_for('static',filename='images/icons8-arrow-50.png')}}" width="23" height="20">
+                                 <div class="dropdown-content" id="skinDropdown">
+                                    <div>Normal</div>
+                                    <div>Dry</div>
+                                    <div>Combination</div>
+                                </div>
+                    
+                                </div>
+                            </div>
+                        </div>               
+
+                </div>
+        
+         <section id="new_products">
+    
+            <!--**heading*********************-->
+            <div class="new-p-heading">
+                <!--heading-->
+                <h3>New Products</h3>
+                <!--filter-->
+                <ul>
+                    <li class="filter-list " data-filter="all"><a href="{{ url_for('product_catalog') }}">All</a></li>
+                    <li class="filter-list" data-filter="skin"><a href="{{ url_for('product_catalog', category='Skin') }}">Skin</a></li>
+                    <li class="filter-list" data-filter="mackup"><a href="{{ url_for('product_catalog', category='Makeup') }}">Makeup</li>
+                    <li class="filter-list" data-filter="nail"><a href="{{ url_for('product_catalog', category='Nail') }}">Nails</a></li>
+                    <li class="filter-list" data-filter="hair"><a href="{{ url_for('product_catalog', category='Hair') }}">Hair</a></li>
+                </ul>
+            </div>
+    
+            <!--**container******************-->
+            <div class="new-product-container">
+                
+    
+                <!--**box**-->
+                <div class="new-productbox-wrapper" >
+                    {% for product in products %}
+                 <div class="new-product-box" data-filter="{{product.category}}" data-brand="{{product.productbrand}}">
+                    <!--img-->
+                    
+                    <a href="#" class="new-product-img">
+                        <span>{{product.category}}</span>
+                        <img src="{{ url_for('static',filename='images/'+product.image)}}" alt="{{product.productname}}" />
+                    </a>
+                    <!--text-->
+                    <div class="new-product-text">
+                        <a href="#" class="new-product-title">{{product.productname}} </a>
+                        <span>₹{{product.price}}</span>
+                        {% if logged_in %}
+                        <form action="{{ url_for('add_to_cart', productid=product.productid) }}" method="POST">
+                        <button type="submit" class="addtocart" style="border-radius:20px ;color: azure;background-color: rgb(40, 84, 128);padding: 11px;border: none;font-size: medium;" >Add To Cart</button>
+                        </form>
+                        {% else %}
+                         <form action="{{ url_for('login') }}" method="GET">
+                         <button type="submit"  class="addtocart" style="border-radius:20px ;color: azure;background-color: rgb(40, 84, 128);padding: 11px;border: none;font-size: medium;">Add to Cart</button>
+                       </form>
+                       {% endif %}
+                    </div>
+                   
+                </div>
+                {% endfor %}
+               
+
+                </div><!--end-box-->
+    
+                
+            
+            </div><!--end-container-->
+            
+         </section>
+        </div>
+        {% endblock %}
